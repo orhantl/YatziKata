@@ -1,2 +1,2 @@
-# YatziKata
-Yatzi kata 
+# YatzyKata
+Yatzy kata 
