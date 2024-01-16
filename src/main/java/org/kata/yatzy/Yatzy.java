@@ -2,6 +2,8 @@ package org.kata.yatzy;
 
 import java.util.List;
 
+import static java.util.Arrays.asList;
+
 public class Yatzy {
 
     public static int chance(DiceRoll dices) {
@@ -71,39 +73,18 @@ public class Yatzy {
                 .orElse(0);
     }
 
-
-    public static int smallStraight(int d1, int d2, int d3, int d4, int d5) {
-        int[] tallies;
-        tallies = new int[6];
-        tallies[d1 - 1] += 1;
-        tallies[d2 - 1] += 1;
-        tallies[d3 - 1] += 1;
-        tallies[d4 - 1] += 1;
-        tallies[d5 - 1] += 1;
-        if (tallies[0] == 1 &&
-                tallies[1] == 1 &&
-                tallies[2] == 1 &&
-                tallies[3] == 1 &&
-                tallies[4] == 1)
-            return 15;
-        return 0;
+    public static int smallStraight(DiceRoll dices) {
+        return dices.dices.stream()
+                .sorted()
+                .distinct()
+                .toList().equals(asList(1, 2, 3, 4, 5)) ? 15 : 0;
     }
 
-    public static int largeStraight(int d1, int d2, int d3, int d4, int d5) {
-        int[] tallies;
-        tallies = new int[6];
-        tallies[d1 - 1] += 1;
-        tallies[d2 - 1] += 1;
-        tallies[d3 - 1] += 1;
-        tallies[d4 - 1] += 1;
-        tallies[d5 - 1] += 1;
-        if (tallies[1] == 1 &&
-                tallies[2] == 1 &&
-                tallies[3] == 1 &&
-                tallies[4] == 1
-                && tallies[5] == 1)
-            return 20;
-        return 0;
+    public static int largeStraight(DiceRoll dices) {
+        return dices.dices.stream()
+                .sorted()
+                .distinct()
+                .toList().equals(asList(2, 3, 4, 5, 6)) ? 20 : 0;
     }
 
     public static int fullHouse(int d1, int d2, int d3, int d4, int d5) {
