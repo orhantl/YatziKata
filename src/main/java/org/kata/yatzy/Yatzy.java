@@ -1,12 +1,11 @@
 package org.kata.yatzy;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Yatzy {
 
-    private List<Integer> diceRoll = new ArrayList<>();
+    private List<Integer> diceRoll;
 
     public Yatzy(int d1, int d2, int d3, int d4, int d5) {
         this.diceRoll = List.of(d1, d2, d3, d4, d5);
@@ -22,16 +21,8 @@ public class Yatzy {
                 .containsValue(5L) ? 50 : 0;
     }
 
-    public static int ones(int d1, int d2, int d3, int d4, int d5) {
-        int sum = 0;
-        if (d1 == 1) sum++;
-        if (d2 == 1) sum++;
-        if (d3 == 1) sum++;
-        if (d4 == 1) sum++;
-        if (d5 == 1)
-            sum++;
-
-        return sum;q
+    public static int ones(List<Integer> diceRoll) {
+        return diceRoll.stream().filter(diceFace -> diceFace == 1).mapToInt(e -> e).sum();
     }
 
     public static int twos(int d1, int d2, int d3, int d4, int d5) {
