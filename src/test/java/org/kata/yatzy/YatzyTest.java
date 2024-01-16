@@ -16,9 +16,9 @@ public class YatzyTest {
 
     @Test
     public void yatzy_scores_50() {
-        assertEquals(50, Yatzy.yatzy(4,4,4,4,4));
-        assertEquals(50, Yatzy.yatzy(6,6,6,6,6));
-        assertEquals(0, Yatzy.yatzy(6,6,6,6,3));
+        assertEquals(50, Yatzy.yatzy(List.of(4,4,4,4,4)));
+        assertEquals(50, Yatzy.yatzy(List.of(6,6,6,6,6)));
+        assertEquals(0, Yatzy.yatzy(List.of(6,6,6,6,3)));
     }
 
     @Test

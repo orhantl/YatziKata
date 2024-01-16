@@ -2,6 +2,7 @@ package org.kata.yatzy;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Yatzy {
 
@@ -15,14 +16,10 @@ public class Yatzy {
         return diceRoll.stream().mapToInt(Integer::intValue).sum();
     }
 
-    public static int yatzy(int... dice) {
-        int[] counts = new int[6];
-        for (int die : dice)
-            counts[die - 1]++;
-        for (int i = 0; i != 6; i++)
-            if (counts[i] == 5)
-                return 50;
-        return 0;
+    public static int yatzy(List<Integer> diceRoll) {
+        return diceRoll.stream().collect(
+                Collectors.groupingBy(diceFace -> diceFace, Collectors.counting()))
+                .containsValue(5L) ? 50 : 0;
     }
 
     public static int ones(int d1, int d2, int d3, int d4, int d5) {
@@ -34,7 +31,7 @@ public class Yatzy {
         if (d5 == 1)
             sum++;
 
-        return sum;
+        return sum;q
     }
 
     public static int twos(int d1, int d2, int d3, int d4, int d5) {
