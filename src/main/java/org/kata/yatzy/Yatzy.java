@@ -46,24 +46,13 @@ public class Yatzy {
         }
     }
 
-    public static int twoPairs(int d1, int d2, int d3, int d4, int d5) {
-        int[] counts = new int[6];
-        counts[d1 - 1]++;
-        counts[d2 - 1]++;
-        counts[d3 - 1]++;
-        counts[d4 - 1]++;
-        counts[d5 - 1]++;
-        int n = 0;
-        int score = 0;
-        for (int i = 0; i < 6; i += 1)
-            if (counts[6 - i - 1] >= 2) {
-                n++;
-                score += (6 - i);
-            }
-        if (n == 2)
-            return score * 2;
-        else
+    public static int twoPairs(DiceRoll dices) {
+        List<Integer> potentialPairs = dices.findAndReverseOrderedPairs();
+        if (potentialPairs.size() < 2) {
             return 0;
+        } else {
+            return potentialPairs.get(0) * 2 + potentialPairs.get(1) * 2;
+        }
     }
 
     public static int four_of_a_kind(int _1, int _2, int d3, int d4, int d5) {
