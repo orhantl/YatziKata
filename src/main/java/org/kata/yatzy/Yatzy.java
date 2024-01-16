@@ -1,57 +1,49 @@
 package org.kata.yatzy;
 
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class Yatzy {
 
-    public static int chance(List<Integer> diceRoll) {
-        return diceRoll.stream().mapToInt(Integer::intValue).sum();
+    public static int chance(DiceRoll dices) {
+        return dices.getSum();
     }
 
-    public static int yatzy(List<Integer> diceRoll) {
-        return diceRoll.stream().collect(
-                        Collectors.groupingBy(diceFace -> diceFace, Collectors.counting()))
-                .containsValue(5L) ? 50 : 0;
+    public static int yatzy(DiceRoll dices) {
+        return dices.countDiceFaces().containsValue(5) ? 50 : 0;
     }
 
-    public static int ones(List<Integer> diceRoll) {
-        return sumTheOccurencesOfTheGivenDiceFace(diceRoll, 1);
+    public static int ones(DiceRoll dices) {
+        return dices.sumTheOccurrencesOfTheGivenDiceFace(1);
     }
 
-    public static int twos(List<Integer> diceRoll) {
-        return sumTheOccurencesOfTheGivenDiceFace(diceRoll, 2);
+    public static int twos(DiceRoll dices) {
+        return dices.sumTheOccurrencesOfTheGivenDiceFace(2);
     }
 
-    public static int threes(List<Integer> diceRoll) {
-        return sumTheOccurencesOfTheGivenDiceFace(diceRoll, 3);
+    public static int threes(DiceRoll dices) {
+        return dices.sumTheOccurrencesOfTheGivenDiceFace(3);
     }
 
-    public static int fours(List<Integer> diceRoll) {
-        return sumTheOccurencesOfTheGivenDiceFace(diceRoll, 4);
+    public static int fours(DiceRoll dices) {
+        return dices.sumTheOccurrencesOfTheGivenDiceFace(4);
     }
 
-    public static int fives(List<Integer> diceRoll) {
-        return sumTheOccurencesOfTheGivenDiceFace(diceRoll, 5);
+    public static int fives(DiceRoll dices) {
+        return dices.sumTheOccurrencesOfTheGivenDiceFace(5);
     }
 
-    public static int sixes(List<Integer> diceRoll) {
-        return sumTheOccurencesOfTheGivenDiceFace(diceRoll, 6);
+    public static int sixes(DiceRoll dices) {
+        return dices.sumTheOccurrencesOfTheGivenDiceFace(6);
     }
 
-    private static int sumTheOccurencesOfTheGivenDiceFace(List<Integer> diceRoll, int diceFace) {
-        return diceRoll.stream().filter(dice -> dice == diceFace)
-                .mapToInt(e -> e).sum();
-    }
+    public static int onePair(DiceRoll dices) {
+        List<Integer> potentialPairs = dices.findAndReverseOrderedPairs();
 
-    public static int onePair(List<Integer> diceRoll) {
-        List<Integer> availableDiceFace = List.of(6, 5, 4, 3, 2, 1);
-        for (Integer diceFace : availableDiceFace) {
-            if (diceRoll.stream().filter(dice -> Objects.equals(dice, diceFace)).count() >= 2) {
-                return diceFace * 2;
-            }
-        } return 0;
+        if (potentialPairs.isEmpty()) {
+            return 0;
+        } else {
+            return potentialPairs.get(0) * 2;
+        }
     }
 
     public static int twoPairs(int d1, int d2, int d3, int d4, int d5) {
