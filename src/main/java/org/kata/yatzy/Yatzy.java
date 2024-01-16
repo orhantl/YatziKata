@@ -5,89 +5,43 @@ import java.util.stream.Collectors;
 
 public class Yatzy {
 
-    private List<Integer> diceRoll;
-
-    public Yatzy(int d1, int d2, int d3, int d4, int d5) {
-        this.diceRoll = List.of(d1, d2, d3, d4, d5);
-    }
-
     public static int chance(List<Integer> diceRoll) {
         return diceRoll.stream().mapToInt(Integer::intValue).sum();
     }
 
     public static int yatzy(List<Integer> diceRoll) {
         return diceRoll.stream().collect(
-                Collectors.groupingBy(diceFace -> diceFace, Collectors.counting()))
+                        Collectors.groupingBy(diceFace -> diceFace, Collectors.counting()))
                 .containsValue(5L) ? 50 : 0;
     }
 
     public static int ones(List<Integer> diceRoll) {
-        return diceRoll.stream().filter(diceFace -> diceFace == 1).mapToInt(e -> e).sum();
+        return sumTheOccurencesOfTheGivenDiceFace(diceRoll, 1);
     }
 
     public static int twos(List<Integer> diceRoll) {
-        return diceRoll.stream().filter(diceFace -> diceFace == 2).mapToInt(e -> e).sum();
+        return sumTheOccurencesOfTheGivenDiceFace(diceRoll, 2);
     }
 
-    public static int threes(int d1, int d2, int d3, int d4, int d5) {
-        int s;
-        s = 0;
-        if (d1 == 3) s += 3;
-        if (d2 == 3) s += 3;
-        if (d3 == 3) s += 3;
-        if (d4 == 3) s += 3;
-        if (d5 == 3) s += 3;
-        return s;
+    public static int threes(List<Integer> diceRoll) {
+        return sumTheOccurencesOfTheGivenDiceFace(diceRoll, 3);
     }
 
-    public static int fours(int d1, int d2, int d3, int d4, int d5) {
-        int[] dice;
-        dice = new int[5];
-        dice[0] = d1;
-        dice[1] = d2;
-        dice[2] = d3;
-        dice[3] = d4;
-        dice[4] = d5;
-
-        int sum;
-        sum = 0;
-        for (int at = 0; at != 5; at++) {
-            if (dice[at] == 4) {
-                sum += 4;
-            }
-        }
-        return sum;
+    public static int fours(List<Integer> diceRoll) {
+        return sumTheOccurencesOfTheGivenDiceFace(diceRoll, 4);
     }
 
-    public static int fives(int d1, int d2, int d3, int d4, int d5) {
-        int[] dice;
-        dice = new int[5];
-        dice[0] = d1;
-        dice[1] = d2;
-        dice[2] = d3;
-        dice[3] = d4;
-        dice[4] = d5;
-        int s = 0;
-        int i;
-        for (i = 0; i < dice.length; i++)
-            if (dice[i] == 5)
-                s = s + 5;
-        return s;
+    public static int fives(List<Integer> diceRoll) {
+        return sumTheOccurencesOfTheGivenDiceFace(diceRoll, 5);
     }
 
-    public static int sixes(int d1, int d2, int d3, int d4, int d5) {
-        int sum = 0;
-        int[] dice;
-        dice = new int[5];
-        dice[0] = d1;
-        dice[1] = d2;
-        dice[2] = d3;
-        dice[3] = d4;
-        dice[4] = d5;
-        for (int at = 0; at < dice.length; at++)
-            if (dice[at] == 6)
-                sum = sum + 6;
-        return sum;
+    public static int sixes(List<Integer> diceRoll) {
+        return sumTheOccurencesOfTheGivenDiceFace(diceRoll, 6);
+    }
+
+    private static int sumTheOccurencesOfTheGivenDiceFace(List<Integer> diceRoll, int diceFace) {
+        return diceRoll.stream().filter(dice -> dice == diceFace)
+                .mapToInt(e -> e).sum();
     }
 
     public static int score_pair(int d1, int d2, int d3, int d4, int d5) {

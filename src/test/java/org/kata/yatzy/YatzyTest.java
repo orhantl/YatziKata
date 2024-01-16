@@ -37,30 +37,30 @@ public class YatzyTest {
 
     @Test
     public void test_threes() {
-        assertEquals(6, Yatzy.threes(1,2,3,2,3));
-        assertEquals(12, Yatzy.threes(2,3,3,3,3));
+        assertEquals(6, Yatzy.threes(List.of(1,2,3,2,3)));
+        assertEquals(12, Yatzy.threes(List.of(2,3,3,3,3)));
     }
 
     @Test
     public void fours_test()
     {
-        assertEquals(12, Yatzy.fours(4,4,4,5,5));
-        assertEquals(8, Yatzy.fours(4,4,5,5,5));
-        assertEquals(4, Yatzy.fours(4,5,5,5,5));
+        assertEquals(12, Yatzy.fours(List.of(4,4,4,5,5)));
+        assertEquals(8, Yatzy.fours(List.of(4,4,5,5,5)));
+        assertEquals(4, Yatzy.fours(List.of(4,5,5,5,5)));
     }
 
     @Test
     public void fives() {
-        assertEquals(10, Yatzy.fives(4,4,4,5,5));
-        assertEquals(15, Yatzy.fives(4,4,5,5,5));
-        assertEquals(20, Yatzy.fives(4,5,5,5,5));
+        assertEquals(10, Yatzy.fives(List.of(4,4,4,5,5)));
+        assertEquals(15, Yatzy.fives(List.of(4,4,5,5,5)));
+        assertEquals(20, Yatzy.fives(List.of(4,5,5,5,5)));
     }
 
     @Test
     public void sixes_test() {
-        assertEquals(0, Yatzy.sixes(4,4,4,5,5));
-        assertEquals(6, Yatzy.sixes(4,4,6,5,5));
-        assertEquals(18, Yatzy.sixes(6,5,6,6,5));
+        assertEquals(0, Yatzy.sixes(List.of(4,4,4,5,5)));
+        assertEquals(6, Yatzy.sixes(List.of(4,4,6,5,5)));
+        assertEquals(18, Yatzy.sixes(List.of(6,5,6,6,5)));
     }
 
     @Test
