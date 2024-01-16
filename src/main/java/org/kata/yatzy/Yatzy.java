@@ -6,40 +6,40 @@ import static java.util.Arrays.asList;
 
 public class Yatzy {
 
-    public static int chance(DiceRoll dices) {
-        return dices.getSum();
+    public static int chance(DiceRoll dice) {
+        return dice.getSum();
     }
 
-    public static int yatzy(DiceRoll dices) {
-        return dices.countDiceFaces().containsValue(5) ? 50 : 0;
+    public static int yatzy(DiceRoll dice) {
+        return dice.countDiceFaces().containsValue(5) ? 50 : 0;
     }
 
-    public static int ones(DiceRoll dices) {
-        return dices.sumTheOccurrencesOfTheGivenDiceFace(1);
+    public static int ones(DiceRoll dice) {
+        return dice.sumTheOccurrencesOfTheGivenDiceFace(1);
     }
 
-    public static int twos(DiceRoll dices) {
-        return dices.sumTheOccurrencesOfTheGivenDiceFace(2);
+    public static int twos(DiceRoll dice) {
+        return dice.sumTheOccurrencesOfTheGivenDiceFace(2);
     }
 
-    public static int threes(DiceRoll dices) {
-        return dices.sumTheOccurrencesOfTheGivenDiceFace(3);
+    public static int threes(DiceRoll dice) {
+        return dice.sumTheOccurrencesOfTheGivenDiceFace(3);
     }
 
-    public static int fours(DiceRoll dices) {
-        return dices.sumTheOccurrencesOfTheGivenDiceFace(4);
+    public static int fours(DiceRoll dice) {
+        return dice.sumTheOccurrencesOfTheGivenDiceFace(4);
     }
 
-    public static int fives(DiceRoll dices) {
-        return dices.sumTheOccurrencesOfTheGivenDiceFace(5);
+    public static int fives(DiceRoll dice) {
+        return dice.sumTheOccurrencesOfTheGivenDiceFace(5);
     }
 
-    public static int sixes(DiceRoll dices) {
-        return dices.sumTheOccurrencesOfTheGivenDiceFace(6);
+    public static int sixes(DiceRoll dice) {
+        return dice.sumTheOccurrencesOfTheGivenDiceFace(6);
     }
 
-    public static int onePair(DiceRoll dices) {
-        List<Integer> potentialPairs = dices.findAndReverseOrderedPairs();
+    public static int onePair(DiceRoll dice) {
+        List<Integer> potentialPairs = dice.findAndReverseOrderedPairs();
 
         if (potentialPairs.isEmpty()) {
             return 0;
@@ -48,8 +48,8 @@ public class Yatzy {
         }
     }
 
-    public static int twoPairs(DiceRoll dices) {
-        List<Integer> potentialPairs = dices.findAndReverseOrderedPairs();
+    public static int twoPairs(DiceRoll dice) {
+        List<Integer> potentialPairs = dice.findAndReverseOrderedPairs();
         if (potentialPairs.size() < 2) {
             return 0;
         } else {
@@ -57,31 +57,31 @@ public class Yatzy {
         }
     }
 
-    public static int threeOfAKind(DiceRoll dices) {
-        return dices.countDiceFaces().entrySet().stream()
+    public static int threeOfAKind(DiceRoll dice) {
+        return dice.countDiceFaces().entrySet().stream()
                 .filter(entry -> entry.getValue() >= 3)
                 .map(entry -> entry.getKey() * 3)
                 .findFirst()
                 .orElse(0);
     }
 
-    public static int fourOfAKind(DiceRoll dices) {
-        return dices.countDiceFaces().entrySet().stream()
+    public static int fourOfAKind(DiceRoll dice) {
+        return dice.countDiceFaces().entrySet().stream()
                 .filter(entry -> entry.getValue() >= 4)
                 .map(entry -> entry.getKey() * 4)
                 .findFirst()
                 .orElse(0);
     }
 
-    public static int smallStraight(DiceRoll dices) {
-        return dices.dices.stream()
+    public static int smallStraight(DiceRoll dice) {
+        return dice.dice.stream()
                 .sorted()
                 .distinct()
                 .toList().equals(asList(1, 2, 3, 4, 5)) ? 15 : 0;
     }
 
-    public static int largeStraight(DiceRoll dices) {
-        return dices.dices.stream()
+    public static int largeStraight(DiceRoll dice) {
+        return dice.dice.stream()
                 .sorted()
                 .distinct()
                 .toList().equals(asList(2, 3, 4, 5, 6)) ? 20 : 0;

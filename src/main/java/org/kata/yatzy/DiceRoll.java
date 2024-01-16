@@ -13,24 +13,24 @@ import static java.util.stream.Collectors.toList;
 
 public class DiceRoll {
 
-    List<Integer> dices;
+    List<Integer> dice;
 
     public DiceRoll(int d1, int d2, int d3, int d4, int d5) {
-        this.dices = asList(d1, d2, d3, d4, d5);
+        this.dice = asList(d1, d2, d3, d4, d5);
     }
 
     private Collector<Integer, ?, Integer> countingSameDiceFaceOccurences = reducing(0, e -> 1, Integer::sum);
 
     public Map<Integer, Integer> countDiceFaces() {
         // same as using identity() as :
-        // dices.stream().collect(
+        // dice.stream().collect(
         //                Collectors.groupingBy(identity(), countingSameDiceFaceOccurences));
-        return dices.stream().collect(
+        return dice.stream().collect(
                 Collectors.groupingBy(diceFace -> diceFace, countingSameDiceFaceOccurences));
     }
 
     public int getSum() {
-        return dices.stream().mapToInt(Integer::intValue).sum();
+        return dice.stream().mapToInt(Integer::intValue).sum();
     }
 
     public Integer countOccurrence(int diceFace) {
