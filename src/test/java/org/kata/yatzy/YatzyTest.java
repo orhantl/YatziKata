@@ -1,14 +1,17 @@
 package org.kata.yatzy;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class YatzyTest {
 
     @Test
     public void chance_scores_sum_of_all_dice() {
-        assertEquals(15, Yatzy.chance(2,3,4,5,1));
-        assertEquals(16, Yatzy.chance(3,3,4,5,1));
+        assertEquals(15, Yatzy.chance(List.of(2,3,4,5,1)));
+        assertEquals(16, Yatzy.chance(List.of(3,3,4,5,1)));
     }
 
     @Test
@@ -41,23 +44,23 @@ public class YatzyTest {
     @Test
     public void fours_test()
     {
-        assertEquals(12, new Yatzy(4,4,4,5,5).fours());
-        assertEquals(8, new Yatzy(4,4,5,5,5).fours());
-        assertEquals(4, new Yatzy(4,5,5,5,5).fours());
+        assertEquals(12, Yatzy.fours(4,4,4,5,5));
+        assertEquals(8, Yatzy.fours(4,4,5,5,5));
+        assertEquals(4, Yatzy.fours(4,5,5,5,5));
     }
 
     @Test
     public void fives() {
-        assertEquals(10, new Yatzy(4,4,4,5,5).fives());
-        assertEquals(15, new Yatzy(4,4,5,5,5).fives());
-        assertEquals(20, new Yatzy(4,5,5,5,5).fives());
+        assertEquals(10, Yatzy.fives(4,4,4,5,5));
+        assertEquals(15, Yatzy.fives(4,4,5,5,5));
+        assertEquals(20, Yatzy.fives(4,5,5,5,5));
     }
 
     @Test
     public void sixes_test() {
-        assertEquals(0, new Yatzy(4,4,4,5,5).sixes());
-        assertEquals(6, new Yatzy(4,4,6,5,5).sixes());
-        assertEquals(18, new Yatzy(6,5,6,6,5).sixes());
+        assertEquals(0, Yatzy.sixes(4,4,4,5,5));
+        assertEquals(6, Yatzy.sixes(4,4,6,5,5));
+        assertEquals(18, Yatzy.sixes(6,5,6,6,5));
     }
 
     @Test

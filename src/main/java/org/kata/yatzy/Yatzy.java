@@ -1,15 +1,18 @@
 package org.kata.yatzy;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Yatzy {
 
-    public static int chance(int d1, int d2, int d3, int d4, int d5) {
-        int total = 0;
-        total += d1;
-        total += d2;
-        total += d3;
-        total += d4;
-        total += d5;
-        return total;
+    private List<Integer> diceRoll = new ArrayList<>();
+
+    public Yatzy(int d1, int d2, int d3, int d4, int d5) {
+        this.diceRoll = List.of(d1, d2, d3, d4, d5);
+    }
+
+    public static int chance(List<Integer> diceRoll) {
+        return diceRoll.stream().mapToInt(Integer::intValue).sum();
     }
 
     public static int yatzy(int... dice) {
@@ -55,18 +58,15 @@ public class Yatzy {
         return s;
     }
 
-    protected int[] dice;
-
-    public Yatzy(int d1, int d2, int d3, int d4, int _5) {
+    public static int fours(int d1, int d2, int d3, int d4, int d5) {
+        int[] dice;
         dice = new int[5];
         dice[0] = d1;
         dice[1] = d2;
         dice[2] = d3;
         dice[3] = d4;
-        dice[4] = _5;
-    }
+        dice[4] = d5;
 
-    public int fours() {
         int sum;
         sum = 0;
         for (int at = 0; at != 5; at++) {
@@ -77,7 +77,14 @@ public class Yatzy {
         return sum;
     }
 
-    public int fives() {
+    public static int fives(int d1, int d2, int d3, int d4, int d5) {
+        int[] dice;
+        dice = new int[5];
+        dice[0] = d1;
+        dice[1] = d2;
+        dice[2] = d3;
+        dice[3] = d4;
+        dice[4] = d5;
         int s = 0;
         int i;
         for (i = 0; i < dice.length; i++)
@@ -86,8 +93,15 @@ public class Yatzy {
         return s;
     }
 
-    public int sixes() {
+    public static int sixes(int d1, int d2, int d3, int d4, int d5) {
         int sum = 0;
+        int[] dice;
+        dice = new int[5];
+        dice[0] = d1;
+        dice[1] = d2;
+        dice[2] = d3;
+        dice[3] = d4;
+        dice[4] = d5;
         for (int at = 0; at < dice.length; at++)
             if (dice[at] == 6)
                 sum = sum + 6;
