@@ -11,7 +11,11 @@ public class Yatzy {
     }
 
     public static int yatzy(DiceRoll dice) {
-        return dice.countDiceFaces().containsValue(5) ? 50 : 0;
+       if (dice.isYatzy()) {
+           return 50;
+       } else {
+           return 0;
+       }
     }
 
     public static int ones(DiceRoll dice) {

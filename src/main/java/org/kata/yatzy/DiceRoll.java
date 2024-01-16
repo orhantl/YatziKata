@@ -29,6 +29,10 @@ public class DiceRoll {
                 Collectors.groupingBy(diceFace -> diceFace, countingSameDiceFaceOccurences));
     }
 
+    public boolean isYatzy () {
+        return countDiceFaces().containsValue(5);
+    }
+
     public int getSum() {
         return dice.stream().mapToInt(Integer::intValue).sum();
     }
