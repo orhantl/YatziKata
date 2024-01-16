@@ -31,8 +31,8 @@ public class YatzyTest {
 
     @Test
     public void test_2s() {
-        assertEquals(4, Yatzy.twos(1,2,3,2,6));
-        assertEquals(10, Yatzy.twos(2,2,2,2,2));
+        assertEquals(4, Yatzy.twos(List.of(1,2,3,2,6)));
+        assertEquals(10, Yatzy.twos(List.of(2,2,2,2,2)));
     }
 
     @Test
