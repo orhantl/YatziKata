@@ -1,6 +1,7 @@
 package org.kata.yatzy;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Yatzy {
@@ -44,21 +45,16 @@ public class Yatzy {
                 .mapToInt(e -> e).sum();
     }
 
-    public static int score_pair(int d1, int d2, int d3, int d4, int d5) {
-        int[] counts = new int[6];
-        counts[d1 - 1]++;
-        counts[d2 - 1]++;
-        counts[d3 - 1]++;
-        counts[d4 - 1]++;
-        counts[d5 - 1]++;
-        int at;
-        for (at = 0; at != 6; at++)
-            if (counts[6 - at - 1] >= 2)
-                return (6 - at) * 2;
-        return 0;
+    public static int onePair(List<Integer> diceRoll) {
+        List<Integer> availableDiceFace = List.of(6, 5, 4, 3, 2, 1);
+        for (Integer diceFace : availableDiceFace) {
+            if (diceRoll.stream().filter(dice -> Objects.equals(dice, diceFace)).count() >= 2) {
+                return diceFace * 2;
+            }
+        } return 0;
     }
 
-    public static int two_pair(int d1, int d2, int d3, int d4, int d5) {
+    public static int twoPairs(int d1, int d2, int d3, int d4, int d5) {
         int[] counts = new int[6];
         counts[d1 - 1]++;
         counts[d2 - 1]++;
