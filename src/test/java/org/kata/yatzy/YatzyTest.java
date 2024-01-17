@@ -72,7 +72,11 @@ public class YatzyTest {
     public void test_twoPair_score() {
         assertEquals(16, Yatzy.twoPairs(new DiceRoll(3,3,5,4,5)));
         assertEquals(16, Yatzy.twoPairs(new DiceRoll(3,3,5,5,5)));
+        assertEquals(6, Yatzy.twoPairs(new DiceRoll(1,1,2,2,2)));
+        assertEquals(8, Yatzy.twoPairs(new DiceRoll(1,1,2,3,3)));
         assertEquals(0, Yatzy.twoPairs(new DiceRoll(1,2,3,4,5)));
+        // TODO ask if two pairs score like a four of a kind ? -> 4 io 0 if dice face is 1
+       assertEquals(0, Yatzy.twoPairs(new DiceRoll(1,1,1,1,2)));
     }
 
     @Test
