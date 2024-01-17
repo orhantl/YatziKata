@@ -19,27 +19,27 @@ public class Yatzy {
     }
 
     public static int ones(DiceRoll dice) {
-        return dice.sumTheOccurrencesOfTheGivenDiceFace(1);
+        return dice.countOccurrence(1);
     }
 
     public static int twos(DiceRoll dice) {
-        return dice.sumTheOccurrencesOfTheGivenDiceFace(2);
+        return dice.countOccurrence(2) * 2;
     }
 
     public static int threes(DiceRoll dice) {
-        return dice.sumTheOccurrencesOfTheGivenDiceFace(3);
+        return dice.countOccurrence(3) * 3;
     }
 
     public static int fours(DiceRoll dice) {
-        return dice.sumTheOccurrencesOfTheGivenDiceFace(4);
+        return dice.countOccurrence(4) * 4;
     }
 
     public static int fives(DiceRoll dice) {
-        return dice.sumTheOccurrencesOfTheGivenDiceFace(5);
+        return dice.countOccurrence(5) * 5;
     }
 
     public static int sixes(DiceRoll dice) {
-        return dice.sumTheOccurrencesOfTheGivenDiceFace(6);
+        return dice.countOccurrence(6) * 6;
     }
 
     public static int onePair(DiceRoll dice) {

@@ -41,10 +41,6 @@ public class DiceRoll {
         return countDiceFaces().getOrDefault(diceFace, 0);
     }
 
-    public int sumTheOccurrencesOfTheGivenDiceFace(int diceFace) {
-        return countOccurrence(diceFace) * diceFace;
-    }
-
     private Stream<Integer> filterNumberOfDiceGreaterThan(int occurrenceNumber) {
         return countDiceFaces().entrySet().stream()
                 .filter(entry -> entry.getValue() >= occurrenceNumber)
