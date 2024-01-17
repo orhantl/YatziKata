@@ -19,7 +19,7 @@ public class DiceRoll {
         this.dice = asList(d1, d2, d3, d4, d5);
     }
 
-    private Collector<Integer, ?, Integer> countingSameDiceFaceOccurences = reducing(0, e -> 1, Integer::sum);
+    private final Collector<Integer, ?, Integer> countingSameDiceFaceOccurences = reducing(0, e -> 1, Integer::sum);
 
     public Map<Integer, Integer> countDiceFaces() {
         // same as using identity() as :

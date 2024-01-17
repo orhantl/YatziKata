@@ -2,7 +2,10 @@ package org.kata.yatzy;
 
 import java.util.List;
 
-public class Yatzy {
+public class YatzyScore {
+
+    private YatzyScore() {
+    }
 
     public static int chance(DiceRoll dice) {
         return dice.getSum();
