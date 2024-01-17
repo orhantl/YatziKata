@@ -92,6 +92,8 @@ public class YatzyTest {
     public void test_fourOfAKind_score() {
         assertEquals(12, Yatzy.fourOfAKind(new DiceRoll(3,3,3,3,5)));
         assertEquals(20, Yatzy.fourOfAKind(new DiceRoll(5,5,5,4,5)));
+        assertEquals(8, Yatzy.fourOfAKind(new DiceRoll(2,2,2,2,5)));
+        assertEquals(0, Yatzy.fourOfAKind(new DiceRoll(3,3,3,5,5)));
         assertEquals(0, Yatzy.fourOfAKind(new DiceRoll(1,2,3,4,5)));
     }
 

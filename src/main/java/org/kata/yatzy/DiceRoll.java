@@ -47,17 +47,10 @@ public class DiceRoll {
                 .map(Map.Entry::getKey);
     }
 
-    public List<Integer> findAndReverseOrderedPairs() {
-        return filterNumberOfDiceGreaterThan(2)
+    public List<Integer> findAndReverseOrderCombination(int occurrenceNumber) {
+        return filterNumberOfDiceGreaterThan(occurrenceNumber)
                 .sorted(reverseOrder())
                 .collect(toList());
     }
-
-    public List<Integer> findAndReverseOrderedCombination(int occurrenceLookUp) {
-        return filterNumberOfDiceGreaterThan(occurrenceLookUp)
-                .sorted(reverseOrder())
-                .collect(toList());
-    }
-
 
 }

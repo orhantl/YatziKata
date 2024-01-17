@@ -48,7 +48,7 @@ public class Yatzy {
     }
 
     public static int onePair(DiceRoll dice) {
-        List<Integer> potentialPairs = dice.findAndReverseOrderedPairs();
+        List<Integer> potentialPairs = dice.findAndReverseOrderCombination(2);
 
         if (potentialPairs.isEmpty()) {
             return 0;
@@ -58,7 +58,7 @@ public class Yatzy {
     }
 
     public static int twoPairs(DiceRoll dice) {
-        List<Integer> potentialPairs = dice.findAndReverseOrderedPairs();
+        List<Integer> potentialPairs = dice.findAndReverseOrderCombination(2);
         if (potentialPairs.size() < 2) {
             return 0;
         } else {
@@ -68,7 +68,7 @@ public class Yatzy {
     }
 
     public static int threeOfAKind(DiceRoll dice) {
-        List<Integer> potentialThreeOfAKind = dice.findAndReverseOrderedCombination(3);
+        List<Integer> potentialThreeOfAKind = dice.findAndReverseOrderCombination(3);
         if (potentialThreeOfAKind.isEmpty()) {
             return 0;
         } else {
@@ -77,7 +77,7 @@ public class Yatzy {
     }
 
     public static int fourOfAKind(DiceRoll dice) {
-        List<Integer> potentialFourOfAKind = dice.findAndReverseOrderedCombination(4);
+        List<Integer> potentialFourOfAKind = dice.findAndReverseOrderCombination(4);
         if (potentialFourOfAKind.isEmpty()) {
             return 0;
         } else {
