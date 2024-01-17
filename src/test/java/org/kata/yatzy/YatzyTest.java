@@ -8,15 +8,15 @@ class YatzyTest {
 
     @Test
     void should_score_combination_of_chance() {
-        assertEquals(15, Yatzy.chance(2,3,4,5,1));
-        assertEquals(16, Yatzy.chance(3,3,4,5,1));
+        assertEquals(15, Yatzy.chance(2, 3, 4, 5, 1));
+        assertEquals(16, Yatzy.chance(3, 3, 4, 5, 1));
     }
 
     @Test
     void should_score_combination_of_yatzy() {
-        assertEquals(50, Yatzy.yatzy(4,4,4,4,4));
-        assertEquals(50, Yatzy.yatzy(6,6,6,6,6));
-        assertEquals(0, Yatzy.yatzy(6,6,6,6,3));
+        assertEquals(50, Yatzy.yatzy(4, 4, 4, 4, 4));
+        assertEquals(50, Yatzy.yatzy(6, 6, 6, 6, 6));
+        assertEquals(0, Yatzy.yatzy(6, 6, 6, 6, 3));
     }
 
     @Test
@@ -75,10 +75,10 @@ class YatzyTest {
 
     @Test
     void should_score_combination_of_threeOfAKind() {
-        assertEquals(9, Yatzy.three_of_a_kind(3,3,3,4,5));
-        assertEquals(15, Yatzy.three_of_a_kind(5,3,5,4,5));
-        assertEquals(9, Yatzy.three_of_a_kind(3,3,3,3,5));
-        assertEquals(9, Yatzy.three_of_a_kind(3,3,3,3,3));
+        assertEquals(9, Yatzy.three_of_a_kind(3, 3, 3, 4, 5));
+        assertEquals(15, Yatzy.three_of_a_kind(5, 3, 5, 4, 5));
+        assertEquals(9, Yatzy.three_of_a_kind(3, 3, 3, 3, 5));
+        assertEquals(9, Yatzy.three_of_a_kind(3, 3, 3, 3, 3));
     }
 
     @Test
@@ -89,21 +89,21 @@ class YatzyTest {
 
     @Test
     void should_score_combination_of_smallStraight() {
-        assertEquals(15, Yatzy.smallStraight(1,2,3,4,5));
-        assertEquals(15, Yatzy.smallStraight(2,3,4,5,1));
-        assertEquals(0, Yatzy.smallStraight(1,2,2,4,5));
+        assertEquals(15, Yatzy.smallStraight(1, 2, 3, 4, 5));
+        assertEquals(15, Yatzy.smallStraight(2, 3, 4, 5, 1));
+        assertEquals(0, Yatzy.smallStraight(1, 2, 2, 4, 5));
     }
 
     @Test
     void should_score_combination_of_largeStraight() {
-        assertEquals(20, Yatzy.largeStraight(6,2,3,4,5));
-        assertEquals(20, Yatzy.largeStraight(2,3,4,5,6));
-        assertEquals(0, Yatzy.largeStraight(1,2,2,4,5));
+        assertEquals(20, Yatzy.largeStraight(6, 2, 3, 4, 5));
+        assertEquals(20, Yatzy.largeStraight(2, 3, 4, 5, 6));
+        assertEquals(0, Yatzy.largeStraight(1, 2, 2, 4, 5));
     }
 
     @Test
     void should_score_combination_of_fullHouse() {
-        assertEquals(18, Yatzy.fullHouse(6,2,2,2,6));
-        assertEquals(0, Yatzy.fullHouse(2,3,4,5,6));
+        assertEquals(18, Yatzy.fullHouse(6, 2, 2, 2, 6));
+        assertEquals(0, Yatzy.fullHouse(2, 3, 4, 5, 6));
     }
 }
