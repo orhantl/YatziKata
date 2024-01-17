@@ -53,6 +53,19 @@ public class DiceRoll {
                 .collect(toList());
     }
 
+    public boolean isSmallStraight() {
+        return dice.stream()
+                .sorted()
+                .distinct()
+                .toList().equals(asList(1, 2, 3, 4, 5));
+    }
+    public boolean isLargeStraight() {
+        return dice.stream()
+                .sorted()
+                .distinct()
+                .toList().equals(asList(2, 3, 4, 5, 6));
+    }
+
     public boolean isFullHouse() {
         boolean hasThreeOfKind = findAndReverseOrderCombination(3).size() == 1;
         boolean hasPair = findAndReverseOrderCombination(2).size() > 1;

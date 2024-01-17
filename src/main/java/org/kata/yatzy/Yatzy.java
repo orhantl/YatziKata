@@ -2,8 +2,6 @@ package org.kata.yatzy;
 
 import java.util.List;
 
-import static java.util.Arrays.asList;
-
 public class Yatzy {
 
     public static int chance(DiceRoll dice) {
@@ -86,17 +84,11 @@ public class Yatzy {
     }
 
     public static int smallStraight(DiceRoll dice) {
-        return dice.dice.stream()
-                .sorted()
-                .distinct()
-                .toList().equals(asList(1, 2, 3, 4, 5)) ? 15 : 0;
+        return dice.isSmallStraight() ? 15 : 0;
     }
 
     public static int largeStraight(DiceRoll dice) {
-        return dice.dice.stream()
-                .sorted()
-                .distinct()
-                .toList().equals(asList(2, 3, 4, 5, 6)) ? 20 : 0;
+        return dice.isLargeStraight() ? 20 : 0;
     }
 
     public static int fullHouse(DiceRoll diceRoll) {
