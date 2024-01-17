@@ -53,5 +53,11 @@ public class DiceRoll {
                 .collect(toList());
     }
 
+    public List<Integer> findAndReverseOrderedCombination(int occurrenceLookUp) {
+        return filterNumberOfDiceGreaterThan(occurrenceLookUp)
+                .sorted(reverseOrder())
+                .collect(toList());
+    }
+
 
 }

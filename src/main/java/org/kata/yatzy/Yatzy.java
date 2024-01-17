@@ -42,13 +42,18 @@ public class Yatzy {
         return dice.countOccurrence(6) * 6;
     }
 
+
+    private static int calculateScore(int diceFaceOfPair, int operand) {
+        return diceFaceOfPair * operand;
+    }
+
     public static int onePair(DiceRoll dice) {
         List<Integer> potentialPairs = dice.findAndReverseOrderedPairs();
 
         if (potentialPairs.isEmpty()) {
             return 0;
         } else {
-            return potentialPairs.get(0) * 2;
+            return calculateScore(potentialPairs.get(0),2);
         }
     }
 
@@ -57,24 +62,27 @@ public class Yatzy {
         if (potentialPairs.size() < 2) {
             return 0;
         } else {
-            return potentialPairs.get(0) * 2 + potentialPairs.get(1) * 2;
+            return calculateScore(potentialPairs.get(0),2)
+                    + calculateScore(potentialPairs.get(1), 2);
         }
     }
 
     public static int threeOfAKind(DiceRoll dice) {
-        return dice.countDiceFaces().entrySet().stream()
-                .filter(entry -> entry.getValue() >= 3)
-                .map(entry -> entry.getKey() * 3)
-                .findFirst()
-                .orElse(0);
+        List<Integer> potentialThreeOfAKind = dice.findAndReverseOrderedCombination(3);
+        if (potentialThreeOfAKind.isEmpty()) {
+            return 0;
+        } else {
+            return calculateScore(potentialThreeOfAKind.get(0) ,3);
+        }
     }
 
     public static int fourOfAKind(DiceRoll dice) {
-        return dice.countDiceFaces().entrySet().stream()
-                .filter(entry -> entry.getValue() >= 4)
-                .map(entry -> entry.getKey() * 4)
-                .findFirst()
-                .orElse(0);
+        List<Integer> potentialFourOfAKind = dice.findAndReverseOrderedCombination(4);
+        if (potentialFourOfAKind.isEmpty()) {
+            return 0;
+        } else {
+            return calculateScore(potentialFourOfAKind.get(0),4);
+        }
     }
 
     public static int smallStraight(DiceRoll dice) {
