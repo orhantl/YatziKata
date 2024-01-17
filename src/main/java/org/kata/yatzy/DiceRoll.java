@@ -53,4 +53,16 @@ public class DiceRoll {
                 .collect(toList());
     }
 
+    public boolean isFullHouse() {
+        boolean hasThreeOfKind = findAndReverseOrderCombination(3).size() == 1;
+        boolean hasPair = findAndReverseOrderCombination(2).size() > 1;
+        boolean isYahtzee = isYatzy();
+
+        if (isYahtzee) {
+            return false;
+        } else {
+            return hasThreeOfKind && hasPair;
+        }
+    }
+
 }
