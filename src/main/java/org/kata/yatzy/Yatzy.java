@@ -8,12 +8,6 @@ public class Yatzy {
         return getSumOfDiceRoll(d1, d2, d3, d4, d5, 1);
     }
 
-    private static Integer getSumOfDiceRoll(int d1, int d2, int d3, int d4, int d5, int searchedDice) {
-        return Stream.of(d1, d2, d3, d4, d5)
-                .filter(dice -> dice == searchedDice)
-                .reduce(0, Integer::sum);
-    }
-
     public static int twos(int d1, int d2, int d3, int d4, int d5) {
         return getSumOfDiceRoll(d1, d2, d3, d4, d5, 2);
     }
@@ -22,32 +16,16 @@ public class Yatzy {
         return getSumOfDiceRoll(d1, d2, d3, d4, d5, 3);
     }
 
-    public int fours() {
-        int sum;
-        sum = 0;
-        for (int at = 0; at != 5; at++) {
-            if (dice[at] == 4) {
-                sum += 4;
-            }
-        }
-        return sum;
+    public static int fours(int d1, int d2, int d3, int d4, int d5) {
+        return getSumOfDiceRoll(d1, d2, d3, d4, d5, 4);
     }
 
-    public int fives() {
-        int s = 0;
-        int i;
-        for (i = 0; i < dice.length; i++)
-            if (dice[i] == 5)
-                s = s + 5;
-        return s;
+    public static int fives(int d1, int d2, int d3, int d4, int d5) {
+        return getSumOfDiceRoll(d1, d2, d3, d4, d5, 5);
     }
 
-    public int sixes() {
-        int sum = 0;
-        for (int die : dice)
-            if (die == 6)
-                sum = sum + 6;
-        return sum;
+    public static int sixes(int d1, int d2, int d3, int d4, int d5) {
+        return getSumOfDiceRoll(d1, d2, d3, d4, d5, 6);
     }
 
     public static int chance(int d1, int d2, int d3, int d4, int d5) {
@@ -209,5 +187,11 @@ public class Yatzy {
             return _2_at * 2 + _3_at * 3;
         else
             return 0;
+    }
+
+    private static Integer getSumOfDiceRoll(int d1, int d2, int d3, int d4, int d5, int searchedDice) {
+        return Stream.of(d1, d2, d3, d4, d5)
+                .filter(dice -> dice == searchedDice)
+                .reduce(0, Integer::sum);
     }
 }
