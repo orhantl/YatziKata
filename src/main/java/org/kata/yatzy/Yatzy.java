@@ -1,6 +1,8 @@
 package org.kata.yatzy;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Yatzy {
 
@@ -39,14 +41,23 @@ public class Yatzy {
         return list.stream().filter(d -> d == 6).mapToInt(Integer::intValue).sum();
     }
 
-    public static int yatzy(int... dice) {
-        int[] counts = new int[6];
-        for (int die : dice)
-            counts[die - 1]++;
-        for (int i = 0; i != 6; i++)
-            if (counts[i] == 5)
-                return 50;
-        return 0;
+    private static Map<Integer, Integer> countNumberOfOccurrences(List<Integer> dice) {
+       Map<Integer, Integer> occurrences = new HashMap<>(5);
+         dice.forEach(d -> {
+              if (occurrences.containsKey(d)) {
+                occurrences.put(d, occurrences.get(d) + 1);
+              } else {
+                occurrences.put(d, 1);
+              }
+         });
+         return occurrences;
+
+    }
+
+    public static int yatzy(int d1, int d2, int d3, int d4, int d5) {
+        Map<Integer, Integer> occurrences = countNumberOfOccurrences(List.of(d1, d2, d3, d4, d5));
+        Integer yatzy = occurrences.values().stream().filter(v -> v == 5).findFirst().orElse(0);
+        return yatzy == 5 ? 50 : 0;
     }
 
     public static int score_pair(int d1, int d2, int d3, int d4, int d5) {

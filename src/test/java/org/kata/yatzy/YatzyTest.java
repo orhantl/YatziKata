@@ -54,6 +54,13 @@ class YatzyTest {
     }
 
     @Test
+    void should_score_combination_of_yatzy() {
+        assertEquals(50, Yatzy.yatzy(4, 4, 4, 4, 4));
+        assertEquals(50, Yatzy.yatzy(6, 6, 6, 6, 6));
+        assertEquals(0, Yatzy.yatzy(6, 6, 6, 6, 3));
+    }
+
+    @Test
     void should_score_combination_of_onePair() {
         assertEquals(6, Yatzy.score_pair(3, 4, 3, 5, 6));
         assertEquals(10, Yatzy.score_pair(5, 3, 3, 3, 5));
@@ -98,12 +105,5 @@ class YatzyTest {
     void should_score_combination_of_fullHouse() {
         assertEquals(18, Yatzy.fullHouse(6, 2, 2, 2, 6));
         assertEquals(0, Yatzy.fullHouse(2, 3, 4, 5, 6));
-    }
-
-    @Test
-    void should_score_combination_of_yatzy() {
-        assertEquals(50, Yatzy.yatzy(4, 4, 4, 4, 4));
-        assertEquals(50, Yatzy.yatzy(6, 6, 6, 6, 6));
-        assertEquals(0, Yatzy.yatzy(6, 6, 6, 6, 3));
     }
 }
