@@ -41,6 +41,18 @@ public class Yatzy {
         return list.stream().filter(d -> d == 6).mapToInt(Integer::intValue).sum();
     }
 
+    public static int yatzy(int d1, int d2, int d3, int d4, int d5) {
+        Map<Integer, Integer> occurrences = countNumberOfOccurrences(List.of(d1, d2, d3, d4, d5));
+        Integer yatzy = occurrences.values().stream().filter(v -> v == 5).findFirst().orElse(0);
+        return yatzy == 5 ? 50 : 0;
+    }
+
+    public static int fourOfAKind(int d1, int d2, int d3, int d4, int d5) {
+        Map<Integer, Integer> occurrences = countNumberOfOccurrences(List.of(d1, d2, d3, d4, d5));
+        Integer dieFace = getDieFaceForSearchedOccurrence(occurrences);
+        return dieFace * 4;
+    }
+
     private static Map<Integer, Integer> countNumberOfOccurrences(List<Integer> dice) {
        Map<Integer, Integer> occurrences = new HashMap<>(5);
          dice.forEach(d -> {
@@ -51,13 +63,13 @@ public class Yatzy {
               }
          });
          return occurrences;
-
     }
 
-    public static int yatzy(int d1, int d2, int d3, int d4, int d5) {
-        Map<Integer, Integer> occurrences = countNumberOfOccurrences(List.of(d1, d2, d3, d4, d5));
-        Integer yatzy = occurrences.values().stream().filter(v -> v == 5).findFirst().orElse(0);
-        return yatzy == 5 ? 50 : 0;
+    private static Integer getDieFaceForSearchedOccurrence(Map<Integer, Integer> occurrences) {
+        return occurrences.entrySet().stream()
+                .filter(e -> e.getValue() == 4)
+                .findFirst()
+                .orElse(Map.entry(0, 0)).getKey();
     }
 
     public static int score_pair(int d1, int d2, int d3, int d4, int d5) {
@@ -92,20 +104,6 @@ public class Yatzy {
             return score * 2;
         else
             return 0;
-    }
-
-    public static int four_of_a_kind(int _1, int _2, int d3, int d4, int d5) {
-        int[] tallies;
-        tallies = new int[6];
-        tallies[_1 - 1]++;
-        tallies[_2 - 1]++;
-        tallies[d3 - 1]++;
-        tallies[d4 - 1]++;
-        tallies[d5 - 1]++;
-        for (int i = 0; i < 6; i++)
-            if (tallies[i] >= 4)
-                return (i + 1) * 4;
-        return 0;
     }
 
     public static int three_of_a_kind(int d1, int d2, int d3, int d4, int d5) {

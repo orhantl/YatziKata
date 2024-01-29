@@ -83,8 +83,8 @@ class YatzyTest {
 
     @Test
     void should_score_combination_of_fourOfAKind() {
-        assertEquals(12, Yatzy.four_of_a_kind(3,3,3,3,5));
-        assertEquals(20, Yatzy.four_of_a_kind(5,5,5,4,5));
+        assertEquals(12, Yatzy.fourOfAKind(3,3,3,3,5));
+        assertEquals(20, Yatzy.fourOfAKind(5,5,5,4,5));
     }
 
     @Test
