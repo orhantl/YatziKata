@@ -36,15 +36,9 @@ public class Yatzy {
         return list.stream().filter(d -> d == 3).mapToInt(Integer::intValue).sum();
     }
 
-    public int fours() {
-        int sum;
-        sum = 0;
-        for (int at = 0; at != 5; at++) {
-            if (dice[at] == 4) {
-                sum += 4;
-            }
-        }
-        return sum;
+    public static int fours(int d1, int d2, int d3, int d4, int d5) {
+        List<Integer> list = List.of(d1, d2, d3, d4, d5);
+        return list.stream().filter(d -> d == 4).mapToInt(Integer::intValue).sum();
     }
 
     public int fives() {

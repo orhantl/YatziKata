@@ -13,13 +13,6 @@ class YatzyTest {
     }
 
     @Test
-    void should_score_combination_of_yatzy() {
-        assertEquals(50, Yatzy.yatzy(4, 4, 4, 4, 4));
-        assertEquals(50, Yatzy.yatzy(6, 6, 6, 6, 6));
-        assertEquals(0, Yatzy.yatzy(6, 6, 6, 6, 3));
-    }
-
-    @Test
     void should_score_combination_of_ones() {
         assertEquals(1, Yatzy.ones(1, 2, 3, 4, 5));
         assertEquals(2, Yatzy.ones(1, 2, 1, 4, 5));
@@ -39,11 +32,12 @@ class YatzyTest {
         assertEquals(12, Yatzy.threes(2, 3, 3, 3, 3));
     }
 
+
     @Test
     void should_score_combination_of_fours() {
-        assertEquals(12, new Yatzy(4,4,4,5,5).fours());
-        assertEquals(8, new Yatzy(4,4,5,5,5).fours());
-        assertEquals(4, new Yatzy(4,5,5,5,5).fours());
+        assertEquals(12, Yatzy.fours(4,4,4,5,5));
+        assertEquals(8, Yatzy.fours(4,4,5,5,5));
+        assertEquals(4, Yatzy.fours(4,5,5,5,5));
     }
 
     @Test
@@ -105,5 +99,12 @@ class YatzyTest {
     void should_score_combination_of_fullHouse() {
         assertEquals(18, Yatzy.fullHouse(6, 2, 2, 2, 6));
         assertEquals(0, Yatzy.fullHouse(2, 3, 4, 5, 6));
+    }
+
+    @Test
+    void should_score_combination_of_yatzy() {
+        assertEquals(50, Yatzy.yatzy(4, 4, 4, 4, 4));
+        assertEquals(50, Yatzy.yatzy(6, 6, 6, 6, 6));
+        assertEquals(0, Yatzy.yatzy(6, 6, 6, 6, 3));
     }
 }
