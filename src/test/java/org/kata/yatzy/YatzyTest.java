@@ -32,7 +32,6 @@ class YatzyTest {
         assertEquals(12, Yatzy.threes(2, 3, 3, 3, 3));
     }
 
-
     @Test
     void should_score_combination_of_fours() {
         assertEquals(12, Yatzy.fours(4,4,4,5,5));
@@ -42,16 +41,16 @@ class YatzyTest {
 
     @Test
     void should_score_combination_of_fives() {
-        assertEquals(10, new Yatzy(4,4,4,5,5).fives());
-        assertEquals(15, new Yatzy(4,4,5,5,5).fives());
-        assertEquals(20, new Yatzy(4,5,5,5,5).fives());
+        assertEquals(10, Yatzy.fives(4,4,4,5,5));
+        assertEquals(15, Yatzy.fives(4,4,5,5,5));
+        assertEquals(20, Yatzy.fives(4,5,5,5,5));
     }
 
     @Test
     void should_score_combination_of_sixes() {
-        assertEquals(0, new Yatzy(4,4,4,5,5).sixes());
-        assertEquals(6, new Yatzy(4,4,6,5,5).sixes());
-        assertEquals(18, new Yatzy(6,5,6,6,5).sixes());
+        assertEquals(0, Yatzy.sixes(4,4,4,5,5));
+        assertEquals(6, Yatzy.sixes(4,4,6,5,5));
+        assertEquals(18, Yatzy.sixes(6,5,6,6,5));
     }
 
     @Test
