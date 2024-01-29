@@ -71,6 +71,7 @@ class YatzyTest {
     void should_score_combination_of_twoPairs() {
         assertEquals(16, Yatzy.twoPair(3, 3, 5, 4, 5));
         assertEquals(16, Yatzy.twoPair(3, 3, 5, 5, 5));
+        assertEquals(12, Yatzy.twoPair(3, 3, 3, 3, 5));
     }
 
     @Test

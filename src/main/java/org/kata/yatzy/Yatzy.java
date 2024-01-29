@@ -80,15 +80,15 @@ public class Yatzy {
     }
 
     private static Map<Integer, Integer> countNumberOfOccurrences(List<Integer> dice) {
-       Map<Integer, Integer> occurrences = new HashMap<>(5);
-         dice.forEach(d -> {
-              if (occurrences.containsKey(d)) {
+        Map<Integer, Integer> occurrences = new HashMap<>(5);
+        dice.forEach(d -> {
+            if (occurrences.containsKey(d)) {
                 occurrences.put(d, occurrences.get(d) + 1);
-              } else {
+            } else {
                 occurrences.put(d, 1);
-              }
-         });
-         return occurrences;
+            }
+        });
+        return occurrences;
     }
 
     private static Integer getDieFaceForSearchedOccurrence(Map<Integer, Integer> occurrences, int searchedOccurrence) {
@@ -102,31 +102,29 @@ public class Yatzy {
     public static int scorePair(int d1, int d2, int d3, int d4, int d5) {
         List<Integer> roll = Arrays.asList(d1, d2, d3, d4, d5);
         roll.sort(Comparator.reverseOrder());
-        return roll.stream().filter(die -> roll.stream()
-                .filter(dieToBeCompare -> Objects.equals(dieToBeCompare, die))
-                        .count() >= 2)
-                .findFirst()
-                .orElse(0) * 2;
+        return findNPair(roll, 1);
     }
 
     public static int twoPair(int d1, int d2, int d3, int d4, int d5) {
-        int[] counts = new int[6];
-        counts[d1 - 1]++;
-        counts[d2 - 1]++;
-        counts[d3 - 1]++;
-        counts[d4 - 1]++;
-        counts[d5 - 1]++;
-        int n = 0;
-        int score = 0;
-        for (int i = 0; i < 6; i += 1)
-            if (counts[6 - i - 1] >= 2) {
-                n++;
-                score += (6 - i);
-            }
-        if (n == 2)
-            return score * 2;
-        else
-            return 0;
+        List<Integer> roll = Arrays.asList(d1, d2, d3, d4, d5);
+        roll.sort(Comparator.reverseOrder());
+
+        int fourOfAKind = fourOfAKind(d1, d2, d3, d4, d5);
+        if (fourOfAKind != 0) {
+            return fourOfAKind;
+        }
+        return findNPair(roll, 2);
+    }
+
+
+    private static int findNPair(List<Integer> roll, int limit) {
+        return roll.stream().filter(die -> roll.stream()
+                        .filter(dieToBeCompare -> Objects.equals(dieToBeCompare, die))
+                        .count() >= 2)
+                .distinct()
+                .limit(limit)
+                .mapToInt(Integer::intValue)
+                .sum() * 2;
     }
 
     public static int fullHouse(int d1, int d2, int d3, int d4, int d5) {
