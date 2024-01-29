@@ -5,54 +5,6 @@ import java.util.List;
 
 public class Yatzy {
 
-    public static int chance(int d1, int d2, int d3, int d4, int d5) {
-        List<Integer> list = List.of(d1, d2, d3, d4, d5);
-        return list.stream().mapToInt(Integer::intValue).sum();
-    }
-
-    public static int yatzy(int... dice) {
-        int[] counts = new int[6];
-        for (int die : dice)
-            counts[die - 1]++;
-        for (int i = 0; i != 6; i++)
-            if (counts[i] == 5)
-                return 50;
-        return 0;
-    }
-
-    public static int ones(int d1, int d2, int d3, int d4, int d5) {
-        int sum = 0;
-        if (d1 == 1) sum++;
-        if (d2 == 1) sum++;
-        if (d3 == 1) sum++;
-        if (d4 == 1) sum++;
-        if (d5 == 1)
-            sum++;
-
-        return sum;
-    }
-
-    public static int twos(int d1, int d2, int d3, int d4, int d5) {
-        int sum = 0;
-        if (d1 == 2) sum += 2;
-        if (d2 == 2) sum += 2;
-        if (d3 == 2) sum += 2;
-        if (d4 == 2) sum += 2;
-        if (d5 == 2) sum += 2;
-        return sum;
-    }
-
-    public static int threes(int d1, int d2, int d3, int d4, int d5) {
-        int s;
-        s = 0;
-        if (d1 == 3) s += 3;
-        if (d2 == 3) s += 3;
-        if (d3 == 3) s += 3;
-        if (d4 == 3) s += 3;
-        if (d5 == 3) s += 3;
-        return s;
-    }
-
     protected int[] dice;
 
     public Yatzy(int d1, int d2, int d3, int d4, int _5) {
@@ -62,6 +14,26 @@ public class Yatzy {
         dice[2] = d3;
         dice[3] = d4;
         dice[4] = _5;
+    }
+
+    public static int chance(int d1, int d2, int d3, int d4, int d5) {
+        List<Integer> list = List.of(d1, d2, d3, d4, d5);
+        return list.stream().mapToInt(Integer::intValue).sum();
+    }
+
+    public static int ones(int d1, int d2, int d3, int d4, int d5) {
+        List<Integer> list = List.of(d1, d2, d3, d4, d5);
+        return list.stream().filter(d -> d == 1).mapToInt(Integer::intValue).sum();
+    }
+
+    public static int twos(int d1, int d2, int d3, int d4, int d5) {
+        List<Integer> list = List.of(d1, d2, d3, d4, d5);
+        return list.stream().filter(d -> d == 2).mapToInt(Integer::intValue).sum();
+    }
+
+    public static int threes(int d1, int d2, int d3, int d4, int d5) {
+        List<Integer> list = List.of(d1, d2, d3, d4, d5);
+        return list.stream().filter(d -> d == 3).mapToInt(Integer::intValue).sum();
     }
 
     public int fours() {
@@ -90,6 +62,16 @@ public class Yatzy {
             if (dice[at] == 6)
                 sum = sum + 6;
         return sum;
+    }
+
+    public static int yatzy(int... dice) {
+        int[] counts = new int[6];
+        for (int die : dice)
+            counts[die - 1]++;
+        for (int i = 0; i != 6; i++)
+            if (counts[i] == 5)
+                return 50;
+        return 0;
     }
 
     public static int score_pair(int d1, int d2, int d3, int d4, int d5) {
