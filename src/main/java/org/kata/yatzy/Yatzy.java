@@ -1,8 +1,10 @@
 package org.kata.yatzy;
 
-import java.util.Objects;
-
 public class Yatzy {
+
+    private static final int SMALL_STRAIGHT_POINT = 15;
+    private static final int LARGE_STRAIGHT_POINTS = 20;
+    private static final int YATZY_POINTS = 50;
 
     public static int chance(Roll roll) {
         return roll.sumDiceValues();
@@ -33,11 +35,11 @@ public class Yatzy {
     }
 
     public static int smallStraight(Roll roll) {
-        return roll.isSmallStraight() ? 15 : 0;
+        return roll.isSmallStraight() ? SMALL_STRAIGHT_POINT : 0;
     }
 
     public static int largeStraight(Roll roll) {
-        return roll.isLargeStraight() ? 20 : 0;
+        return roll.isLargeStraight() ? LARGE_STRAIGHT_POINTS : 0;
     }
 
     public static int threeOfAKind(Roll roll) {
@@ -50,7 +52,7 @@ public class Yatzy {
 
     public static int yatzy(Roll roll) {
         if (roll.isYatzy()) {
-            return 50;
+            return YATZY_POINTS;
         } else {
             return 0;
         }
