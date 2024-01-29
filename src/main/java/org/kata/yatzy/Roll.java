@@ -81,4 +81,8 @@ public class Roll {
         return false;
     }
 
+    public boolean isFullHouse() {
+        Map<Integer, Integer> occurrences = countNumberOfOccurrences();
+        return occurrences.containsValue(3) && occurrences.containsValue(2);
+    }
 }
