@@ -1,87 +1,85 @@
 package org.kata.yatzy;
 
-import java.util.Arrays;
-import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.stream.Stream;
 
 public class Yatzy {
 
-    public static int chance(int d1, int d2, int d3, int d4, int d5) {
-        return Stream.of(d1, d2, d3, d4, d5)
+    public static int chance(Roll roll) {
+        return roll.getDice().stream()
                 .mapToInt(Integer::intValue).sum();
     }
 
-    public static int ones(int d1, int d2, int d3, int d4, int d5) {
-        return sumSearchedOccurrence(d1, d2, d3, d4, d5, 1);
+    public static int ones(Roll roll) {
+        return sumSearchedOccurrence(roll, 1);
     }
 
-    public static int twos(int d1, int d2, int d3, int d4, int d5) {
-        return sumSearchedOccurrence(d1, d2, d3, d4, d5, 2);
+    public static int twos(Roll roll) {
+        return sumSearchedOccurrence(roll, 2);
     }
 
-    public static int threes(int d1, int d2, int d3, int d4, int d5) {
-        return sumSearchedOccurrence(d1, d2, d3, d4, d5, 3);
+    public static int threes(Roll roll) {
+        return sumSearchedOccurrence(roll, 3);
     }
 
-    public static int fours(int d1, int d2, int d3, int d4, int d5) {
-        return sumSearchedOccurrence(d1, d2, d3, d4, d5, 4);
+    public static int fours(Roll roll) {
+        return sumSearchedOccurrence(roll, 4);
     }
 
-    public static int fives(int d1, int d2, int d3, int d4, int d5) {
-        return sumSearchedOccurrence(d1, d2, d3, d4, d5, 5);
+    public static int fives(Roll roll) {
+        return sumSearchedOccurrence(roll, 5);
     }
 
-    public static int sixes(int d1, int d2, int d3, int d4, int d5) {
-        return sumSearchedOccurrence(d1, d2, d3, d4, d5, 6);
+    public static int sixes(Roll roll) {
+        return sumSearchedOccurrence(roll, 6);
     }
 
-    private static int sumSearchedOccurrence(int d1, int d2, int d3, int d4, int d5, int searchedOccurrence) {
-        return Stream.of(d1, d2, d3, d4, d5)
+    private static int sumSearchedOccurrence(Roll roll, int searchedOccurrence) {
+        return roll.getDice().stream()
                 .filter(d -> d == searchedOccurrence)
                 .mapToInt(Integer::intValue).sum();
     }
 
-    public static int smallStraight(int d1, int d2, int d3, int d4, int d5) {
-        return isSmallStraight(d1, d2, d3, d4, d5) ? 15 : 0;
+    public static int smallStraight(Roll roll) {
+        return isSmallStraight(roll) ? 15 : 0;
     }
 
-    public static boolean isSmallStraight(int d1, int d2, int d3, int d4, int d5) {
-        return List.of(d1, d2, d3, d4, d5).containsAll(List.of(1, 2, 3, 4, 5));
+    public static boolean isSmallStraight(Roll roll) {
+        return new HashSet<>(roll.getDice()).containsAll(List.of(1, 2, 3, 4, 5));
     }
 
-    public static int largeStraight(int d1, int d2, int d3, int d4, int d5) {
-        return isLargeStraight(d1, d2, d3, d4, d5) ? 20 : 0;
+    public static int largeStraight(Roll roll) {
+        return isLargeStraight(roll) ? 20 : 0;
     }
 
-    private static boolean isLargeStraight(int d1, int d2, int d3, int d4, int d5) {
-        return List.of(d1, d2, d3, d4, d5).containsAll(List.of(2, 3, 4, 5, 6));
+    private static boolean isLargeStraight(Roll roll) {
+        return new HashSet<>(roll.getDice()).containsAll(List.of(2, 3, 4, 5, 6));
     }
 
-    public static int threeOfAKind(int d1, int d2, int d3, int d4, int d5) {
-        Map<Integer, Integer> occurrences = countNumberOfOccurrences(List.of(d1, d2, d3, d4, d5));
+    public static int threeOfAKind(Roll roll) {
+        Map<Integer, Integer> occurrences = countNumberOfOccurrences(roll);
         Integer dieFace = getDieFaceForSearchedOccurrence(occurrences, 3);
         return dieFace * 3;
     }
 
-    public static int fourOfAKind(int d1, int d2, int d3, int d4, int d5) {
-        Map<Integer, Integer> occurrences = countNumberOfOccurrences(List.of(d1, d2, d3, d4, d5));
+    public static int fourOfAKind(Roll roll) {
+        Map<Integer, Integer> occurrences = countNumberOfOccurrences(roll);
         Integer dieFace = getDieFaceForSearchedOccurrence(occurrences, 4);
         return dieFace * 4;
     }
 
-    public static int yatzy(int d1, int d2, int d3, int d4, int d5) {
-        Map<Integer, Integer> occurrences = countNumberOfOccurrences(List.of(d1, d2, d3, d4, d5));
+    public static int yatzy(Roll roll) {
+        Map<Integer, Integer> occurrences = countNumberOfOccurrences(roll);
         Integer yatzy = getDieFaceForSearchedOccurrence(occurrences, 5);
         return yatzy != 0 ? 50 : 0;
     }
 
-    private static Map<Integer, Integer> countNumberOfOccurrences(List<Integer> dice) {
+    private static Map<Integer, Integer> countNumberOfOccurrences(Roll roll) {
         Map<Integer, Integer> occurrences = new HashMap<>(5);
-        dice.forEach(d -> {
+        roll.getDice().forEach(d -> {
             if (occurrences.containsKey(d)) {
                 occurrences.put(d, occurrences.get(d) + 1);
             } else {
@@ -99,26 +97,20 @@ public class Yatzy {
                 .orElse(Map.entry(0, 0)).getKey();
     }
 
-    public static int scorePair(int d1, int d2, int d3, int d4, int d5) {
-        List<Integer> roll = Arrays.asList(d1, d2, d3, d4, d5);
-        roll.sort(Comparator.reverseOrder());
+    public static int scorePair(Roll roll) {
         return findNPair(roll, 1);
     }
 
-    public static int twoPair(int d1, int d2, int d3, int d4, int d5) {
-        List<Integer> roll = Arrays.asList(d1, d2, d3, d4, d5);
-        roll.sort(Comparator.reverseOrder());
-
-        int fourOfAKind = fourOfAKind(d1, d2, d3, d4, d5);
+    public static int twoPair(Roll roll) {
+        int fourOfAKind = fourOfAKind(roll);
         if (fourOfAKind != 0) {
             return fourOfAKind;
         }
         return findNPair(roll, 2);
     }
 
-
-    private static int findNPair(List<Integer> roll, int limit) {
-        return roll.stream().filter(die -> roll.stream()
+    private static int findNPair(Roll roll, int limit) {
+        return roll.getDice().stream().filter(die -> roll.getDice().stream()
                         .filter(dieToBeCompare -> Objects.equals(dieToBeCompare, die))
                         .count() >= 2)
                 .distinct()
