@@ -43,7 +43,6 @@ public class YatzyScore {
         return dice.countOccurrence(6) * 6;
     }
 
-
     private static int calculateScore(int diceFaceOfPair, int operand) {
         return diceFaceOfPair * operand;
     }
