@@ -3,6 +3,9 @@ package org.kata.yatzy;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.OptionalInt;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Yatzy {
 
@@ -41,16 +44,22 @@ public class Yatzy {
         return list.stream().filter(d -> d == 6).mapToInt(Integer::intValue).sum();
     }
 
-    public static int yatzy(int d1, int d2, int d3, int d4, int d5) {
+    public static int threeOfAKind(int d1, int d2, int d3, int d4, int d5) {
         Map<Integer, Integer> occurrences = countNumberOfOccurrences(List.of(d1, d2, d3, d4, d5));
-        Integer yatzy = occurrences.values().stream().filter(v -> v == 5).findFirst().orElse(0);
-        return yatzy == 5 ? 50 : 0;
+        Integer dieFace = getDieFaceForSearchedOccurrence(occurrences, 3);
+        return dieFace * 3;
     }
 
     public static int fourOfAKind(int d1, int d2, int d3, int d4, int d5) {
         Map<Integer, Integer> occurrences = countNumberOfOccurrences(List.of(d1, d2, d3, d4, d5));
-        Integer dieFace = getDieFaceForSearchedOccurrence(occurrences);
+        Integer dieFace = getDieFaceForSearchedOccurrence(occurrences, 4);
         return dieFace * 4;
+    }
+
+    public static int yatzy(int d1, int d2, int d3, int d4, int d5) {
+        Map<Integer, Integer> occurrences = countNumberOfOccurrences(List.of(d1, d2, d3, d4, d5));
+        Integer yatzy = getDieFaceForSearchedOccurrence(occurrences, 5);
+        return yatzy != 0 ? 50 : 0;
     }
 
     private static Map<Integer, Integer> countNumberOfOccurrences(List<Integer> dice) {
@@ -65,9 +74,9 @@ public class Yatzy {
          return occurrences;
     }
 
-    private static Integer getDieFaceForSearchedOccurrence(Map<Integer, Integer> occurrences) {
+    private static Integer getDieFaceForSearchedOccurrence(Map<Integer, Integer> occurrences, int searchedOccurrence) {
         return occurrences.entrySet().stream()
-                .filter(e -> e.getValue() == 4)
+                .filter(e -> e.getValue() >= searchedOccurrence)
                 .findFirst()
                 .orElse(Map.entry(0, 0)).getKey();
     }
@@ -104,20 +113,6 @@ public class Yatzy {
             return score * 2;
         else
             return 0;
-    }
-
-    public static int three_of_a_kind(int d1, int d2, int d3, int d4, int d5) {
-        int[] t;
-        t = new int[6];
-        t[d1 - 1]++;
-        t[d2 - 1]++;
-        t[d3 - 1]++;
-        t[d4 - 1]++;
-        t[d5 - 1]++;
-        for (int i = 0; i < 6; i++)
-            if (t[i] >= 3)
-                return (i + 1) * 3;
-        return 0;
     }
 
     public static int smallStraight(int d1, int d2, int d3, int d4, int d5) {
