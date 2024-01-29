@@ -9,6 +9,8 @@ import java.util.Map;
 import java.util.Objects;
 
 public class Roll {
+    public static final List<Integer> SMALL_STRAIGHT = List.of(1, 2, 3, 4, 5);
+    public static final List<Integer> LARGE_STRAIGHT = List.of(2, 3, 4, 5, 6);
     private List<Integer> dice;
 
     private Roll(int d1, int d2, int d3, int d4, int d5) {
@@ -33,11 +35,11 @@ public class Roll {
     }
 
     public boolean isSmallStraight() {
-        return new HashSet<>(dice).containsAll(List.of(1, 2, 3, 4, 5));
+        return new HashSet<>(dice).containsAll(SMALL_STRAIGHT);
     }
     
     public boolean isLargeStraight() {
-        return new HashSet<>(dice).containsAll(List.of(2, 3, 4, 5, 6));
+        return new HashSet<>(dice).containsAll(LARGE_STRAIGHT);
     }
 
     private Map<Integer, Integer> countNumberOfOccurrences() {
